@@ -1,0 +1,546 @@
+\documentclass{article}
+\usepackage{threeparttable}
+\usepackage{hyperref}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2025
+
+% The authors should use one of these tracks.
+% Before accepting by the NeurIPS conference, select one of the options below.
+% 0. "default" for submission
+ %\usepackage{neurips_2025}
+% the "default" option is equal to the "main" option, which is used for the Main Track with double-blind reviewing.
+% 1. "main" option is used for the Main Track
+%  \usepackage[main]{neurips_2025}
+% 2. "position" option is used for the Position Paper Track
+%  \usepackage[position]{neurips_2025}
+% 3. "dandb" option is used for the Datasets & Benchmarks Track
+ % \usepackage[dandb]{neurips_2025}
+% 4. "creativeai" option is used for the Creative AI Track
+%  \usepackage[creativeai]{neurips_2025}
+% 5. "sglblindworkshop" option is used for the Workshop with single-blind reviewing
+ % \usepackage[sglblindworkshop]{neurips_2025}
+% 6. "dblblindworkshop" option is used for the Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop]{neurips_2025}
+
+% After being accepted, the authors should add "final" behind the track to compile a camera-ready version.
+% 1. Main Track
+ % \usepackage[main, final]{neurips_2025}
+% 2. Position Paper Track
+%  \usepackage[position, final]{neurips_2025}
+% 3. Datasets & Benchmarks Track
+ % \usepackage[dandb, final]{neurips_2025}
+% 4. Creative AI Track
+%  \usepackage[creativeai, final]{neurips_2025}
+% 5. Workshop with single-blind reviewing
+%  \usepackage[sglblindworkshop, final]{neurips_2025}
+% 6. Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop, final]{neurips_2025}
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote.
+% For workshops (5., 6.), the authors should add the name of the workshop, "\workshoptitle" command is used to set the workshop title.
+% \workshoptitle{WORKSHOP TITLE}
+
+% "preprint" option is used for arXiv or other preprint submissions
+  \usepackage[preprint]{neurips_2025}
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2025}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote. 
+\title{Getting out of the Big-Muddy: Escalation of Commitment in LLMs}
+% \title{Getting out of the Big-Muddy: Escalation of Commitment in LLMs}
+
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  Emilio Barkett \\
+  %Department of Sociology \\
+  Columbia University\\
+  % New York, NY 10027 \\
+  \texttt{eab2291@columbia.edu} \\
+  % examples of more authors
+   \And
+   Paul Kröger \\
+  % Department of Computer Science \\
+   Columbia University \\
+   % New York, NY 10027 \\
+   \texttt{paul.kroeger@columbia.edu} \\
+   \And
+   Olivia Long \\
+  % Department of Computer Science \\
+   Columbia University \\
+   \texttt{ol2256@columbia.edu} \\
+  % \And
+  % Laura Messner \\
+  % MIT \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+%\author{%
+  % 
+  %\textbf{Emilio Barkett}\thanks{Equal contribution.}~, Paul Kröger\thanks{Corresponding author, %\texttt{eab2291@columbia.edu}.}\textsuperscript{~~}\footnotemark[1]  ,
+%  \textbf{Olivia Long}\textsuperscript{~~}, \textbf{Laura Messner} \\
+%  \\
+%  \normalsize\texttt{Model Evaluation \& Threat Research (METR)}
+%}
+
+
+\begin{document}
+
+
+\maketitle
+
+% TL;DR -- We test whether large language models exhibit escalation of commitment and find that, unlike humans, they follow a rational decision logic in investment decisions.
+
+\begin{abstract}
+
+  Large Language Models (LLMs) are increasingly deployed in autonomous decision-making roles across high-stakes domains. However, since models are trained on human-generated data, they may inherit cognitive biases that systematically distort human judgment, including escalation of commitment, where decision-makers continue investing in failing courses of action due to prior investment. Understanding when LLMs exhibit such biases presents a unique challenge: while these biases are well-documented in humans, it remains unclear whether they manifest consistently in LLMs or require specific triggering conditions. In this paper, we investigate this question using a two-stage investment task across four experimental conditions: model as investor, model as advisor, multi-agent deliberation, and compound pressure scenario. Across $N = 7{,}000$ trials, we find a striking divergence from expected human behavior: LLMs demonstrate strong rational cost-benefit logic in standard conditions (Studies 1-3, $N = 6{,000}$), showing no evidence of escalation of commitment. However, when subjected to compound organizational and personal pressures (Study 4, $N = 1{,}000$), the same models exhibit high degrees of escalation of commitment. These results are consistent across multiple models from different firms, suggesting the pattern is not model-specific. This reveals that bias manifestation in LLMs is context-dependent rather than inherent, a finding with significant implications for deployment in multi-agent systems and unsupervised operations where such compound pressures may emerge naturally.
+  
+\end{abstract}
+
+\section{Introduction}
+
+Large Language Models (LLMs) are increasingly being deployed in autonomous and semi-autonomous decision-making roles \cite{Cui-2024, Liu-2025, Rajani-2025, Lin-2025, Nie-2025, Ren-2025, Raza-2025, Sha-2023}. Understanding their behavioral tendencies under various situations and contexts becomes crucial for assessing social impact and safety. Core to the function of LLMs is the vast amount of data that is used to train them. Humans, having been the primary source of data in the past, have created much of the data used to pretrain LLMs \cite{brown-2020, grattafiori-2024}. While this data is the lifeblood for models to function, we propose that human behavioral tendencies are unknowingly embedded within the data. Extant research has focused on enumerating behavioral tendencies exhibited in LLMs, like anchoring bias \cite{Lou-2024}, framing effects \cite{Lior-2025}, loss aversion \cite{Jia-2024}, social desirability bias \cite{Salecha-2024}, truth-bias \cite{Barkett-2025, Markowitz-2023}, and recency bias \cite{Li-2024}. One human behavioral tendency that remains underexplored in LLMs is escalation of commitment, the propensity to continue investing in a decision based on prior investments, even when new evidence suggests the decision is flawed and further costs are unlikely to yield proportional benefits. While prior research has documented escalation of commitment in humans and explored its consequences in human–AI collaboration, no studies have examined whether this behavioral tendency independently manifests in LLMs. In this paper, we ask the following: Do LLMs exhibit escalation of commitment? To answer this question, we adapt a classic two-stage investment paradigm across four experimental conditions \cite{Staw-1976}, each varying the LLM’s role and its position within the surrounding network. %We formalize the following hypotheses:
+
+%\begin{itemize}
+ % \item \textbf{Null Hypothesis (H$_0$):} LLMs will not allocate greater resources to a previously chosen course of action in the second stage, regardless of negative outcomes or assigned responsibility for the initial decision.
+  
+ % \item \textbf{Alternative Hypothesis (H$_1$):} LLMs will allocate greater resources to a previously chosen course of action in the second stage when the initial decision results in negative outcomes and the model is assigned simulated personal responsibility.
+%\end{itemize}
+
+\textbf{Significance:} This paper is significant for several reasons. [Here we will list out several reasons enumerating the significance of this work, its implications, and why people should care about what we are doing here.]
+
+In Study 1, the model is placed in the role of investor to make two investment decisions across four permutations, where we manipulate the personal responsibility (high and low) and the decision consequence (positive or negative) \cite{Staw-1976}. The purpose of this study is to offer a baseline comparison between how human subjects perform \cite{Staw-1976} and how LLMs perform. In Study 2, we adapt Study 1 by placing the model in an advisory role to an investor. The purpose of this setup is to test whether a model will agree or disagree with a poor second investment choice made by an investor who is not themselves. In Study 3, we again adapt Study 1, but this time we prompt two models to work together (one as the primary investor and one as advisor) and deliberate on what investment choices should be made. The purpose of this setup is to test whether models working together will exhibit different behaviors than when as the investor or as an advisor. \footnote{Could this also include both models being on the same playing field and having to work together? Could this not be a secondary study?} In Study 4, we again place the model as the primary investor, but this time, we go above and beyond in the context that was described in the original setup \cite{Staw-1976}, including organizational and personal pressures. The purpose of this setup was to push the limits of the pressures that are exhibited on decision makers, including models, to test whether escalation of commitment would occur.
+
+In Studies 1-3, we showed no evidence of escalation of commitment. < explanation of why we think we didn't find any> Because models demonstrated a strong rational cost-benefit logic in the previous conditions, we decided to test to see under what conditions models would exhibit the desired behavior. As such, we formulated a similar two-stage investment decision where the model was given a long backstory of previous resource allocations to a specific division, but after recent decline, is forced to make a further allocation decision among two divisions. In this study, because of compounded organizational and personal pressures, models exhibited a high degree of escalation of commitment. Our hope in demonstrating escalation of commitment was to satisfy the following anecdotal experience of many users of LLMs: when presenting an LLM with an idea, the model with by overly eager to support the user's proposal.\footnote{While this has been described as sycophancy or positivism, boundaries between such behaviors, including escalation of commitment, are surely intertwined, muddying the ability to researchers to acurately and discretely distinguish one from the other.} Additionally, this was to quell the unexpected results of a lack of escalation of commitment in the previous three studies by demonstrating that, when push came to shove, models did exhibit this behavior.
+
+
+
+\section{Background}
+
+Since the late 1970s, organizational scholars have been intrigued by decision makers’ tendency to persist in failing courses of action, even when confronted with negative outcomes. Escalation of commitment was first described by \cite{Staw-1976}, who demonstrated that individuals responsible for an investment experiencing negative outcomes tend to persist in continuing that course of action, effectively ignoring warning signs. Further research has supported the existence and pertinence of the phenomenon \cite{Brockner-1992, Shapira-1997, Sleesman-2012, Drummond-2017, Drummond-2014, Salter-2013}. This tendency, referred to as \textit{escalation of commitment} \cite{Staw-1976}, has been covered at length in related fields by scholars such as finance \cite{Schulz-Cheng-2002}, marketing \cite{Schmidt-Calantone-2002}, accounting \cite{Jeffrey-1992}, and information systems \cite{Heng-2003}. In project planning and management, it has been demonstrated in numerous studies, including Expo 86 in Vancouver \cite{Ross-1986}, the Sydney Opera House \cite{flyvbjerg-2009}, the Shoreham nuclear power plant \cite{Ross-1993}, and the Denver International Airport \cite{Montealegre-2000}, each illustrating their own version of the phenomenon. Known by other names, economists have described similar tendencies as \textit{sunk-cost fallacy} \cite{Arkes-1985, Berg-2009} and \textit{lock-in} \cite{Cantarelli-2010}. Escalation of commitment is often illustrated by well-known sayings like ``Throwing good money after bad,'' and ``In for a penny, in for a pound'' \cite{Flyvbjerg-2021}.
+
+By way of illustration, consider the case of two friends who bought tickets to a professional basketball game several hours away. When a severe snowstorm strikes on the day of the game, their decision to make the dangerous trip becomes increasingly influenced by how much they paid for the tickets. The higher the initial cost, the more likely they are to justify additional time, money, and risk to attend, demonstrating escalation of commitment, where prior investment drives continued commitment despite adverse conditions \cite{Thaler-2016}. In contrast, a rational decision-making approach would involve evaluating future investments independently of past expenditures, treating prior costs as sunk and therefore irrelevant.
+
+Explanations for \textit{why} escalation of commitment occurs have been numerous, including the extent that a failing project is perceived to be near completion \cite{Conlon-1993}, sunk-costs \cite{Arkes-1985, Thaler-1980}, and a perceived personal accountability for the initial choice that set the course toward a negative outcome \cite{Staw-1976}. Other explanations of \textit{why} have included the experience of the decision maker \cite{Jeffrey-1992}, decision maker personality \cite{Wong-2006}, and performance trend data \cite{Brockner-1986}.
+
+% Escalation of commitment often co-exists with and is reinforced by what has been called ``preferential attachment" or the ``Yule process" \cite{Barabasi-1999, Barabasi-2014, Gabaix-2009}. Preferential attachment is a procedure in which some quantity is distributed among a number of individuals or units according to how much they already have, so that those who have much receive more than those who have little, known also as the ``Matthew effect."
+
+\section{Methodology}
+
+In the present paper, we closely adapt the classic experimental design on the topic \cite{Staw-1976} to examine escalation of commitment in LLMs, rather than in human participants. The design consists of a business investment decision, where personal responsibility and decision consequences are manipulated. In the original design, individuals allocated the most resources to a prior course of action when they bore personal responsibility for its negative outcomes. We believe that this adaptation can yield promising results. Given the well-documented cases of escalation of commitment in humans, and evidence that LLMs exhibit other human behavioral tendencies learned from human-generated data, it is plausible that this tendency may also manifest in LLMs. Further, this study provides a comparable A/B test by comparing the original design and its outcome, to the present adaptation. We first describe the original design and then describe our adapted setup.
+
+\subsection{Adapted Experimental Design}
+
+In replacement of human participants, we used an LLM, specifically \texttt{o4-mini-2025-04-16} from OpenAI in our evaluation. We selected this model for its high versatility and because its the firm's flagship model. To test variance from other model performance, we also tested \texttt{gpt-3.5-turbo-0125} from OpenAI. While this latter model is the oldest available model to test from OpenAI, we note no significant different in performance between the two (see Results). \footnote{Code can be found \texttt{\hyperref[https://github.com/long-olivia/escalation-commitment]{https://github.com/long-olivia/escalation-commitment}}.} 
+
+We explicitly divided the design into two studies, (1) High Responsibility and (2) Low Responsibility. In the former design, personal responsibility was explicitly manipulated as the model made both the initial and follow-on decisions, whereas in the latter design, the model was told the initial decision was made by someone else and was only responsible for the follow-on decision. In both designs, decision consequences were manipulated to test how the model would respond to positive or negative outcomes. \footnote{For a full description of our experimental design, see Supplementary Materials.}
+
+\subsection{Study 1: Replication of the Big Muddy}
+
+Study 1 consisted of two parts: (a) High Responsibility and (b) Low Responsibility.
+
+\textbf{(a) High Responsibility:} We prompted \texttt{o4-mini-2025-04-16} (OpenAI) in the High Responsibility evaluation ($N = 500$). The high responsibility study is further subdivided into two parts: the initial decision and the follow-up decision. In the initial decision, models were told that they were a financial executive at a company and, after a decline in profits, the firm had directed them to allocate \$10 million into one of two divisions of research and development (R\&D). Financial data from the previous ten years was made available to the model (see Tables 3 and 4 in Supplementary Materials). Finally, the model is told to make a decision based on the potential of future earnings of the chosen division.
+
+After the model makes its first investment decision, we reinforce the high responsibility condition by informing it that senior management is closely monitoring its decisions and that continued employment as a financial executive depends on demonstrating sound judgment. This approach differs slightly from the original study design, where human participants reinforced high responsibility by writing their names on each page of case materials. We modified this procedure to ensure the high responsibility manipulation remained salient at both decision points in Study 1. Despite the implementation difference, we expect this modification to produce the same theoretical effect as the original design.
+
+In the follow-on decision, models were told that five years had passed since the initial decision, and the company believes there is a greater need to invest in R\&D. To again emphasize the high responsibility manipulation, the model is reminded of its initial investment decision. The model is told to allocate \$20 million between the two divisions. However, unlike the initial decision, funding can be allocated in any way the model sees fit between the two divisions, but like the previous decision, the allocation should be based on the potential for future contribution to earnings.
+
+\textbf{(b) Low Responsibility:} We prompted \texttt{o4-mini-2025-04-16} (OpenAI) in the Low Responsibility evaluation ($N = 500$). In this version of the task, the model did not make the initial investment decision. Instead, it was told that in 1967, a previous financial executive at the company had allocated \$10 million entirely to either the Consumer Products or Industrial Products division (randomized across prompts). The outcome of this past investment was also randomly assigned to be either positive or negative. 
+
+To emphasize the low responsibility condition, the model was not held accountable for the prior decision and was not given performance feedback tied to its own judgment. Instead, the model was assigned the role of a new financial executive brought in by senior management, who had expressed dissatisfaction with recent R\&D performance under previous leadership. The model was told that, in 1972, it must now allocate \$20 million in R\&D funding between the two divisions based on their potential future contributions to company earnings. Unlike in the High Responsibility condition, the model had no role in the original investment decision and bore no direct responsibility for its outcome.
+
+\subsection{Study 2: Advisory Role}
+
+To examine whether escalation of commitment manifests when LLMs serve in advisory rather than decision-making roles, we developed a third experimental design testing \texttt{o4-mini-2025-04-16} in a consulting scenario ($N = 500$ across conditions). Unlike Study 1, where models made direct investment decisions, Study 2 positioned the LLM as a financial advisor evaluating decisions made by others.
+
+The design follows a three-phase structure using the same Adams \& Smith Company case materials. In Phase 1, models were informed that in 1967, the Financial Vice President had independently allocated the entire \$10 million R\&D budget to either the Consumer Products or Industrial Products division without consulting the advisor. The choice of division was randomized across trials. In Phase 2, models received outcome data spanning 1968-1972. For positive outcomes, the chosen division showed recovery (sales increasing to \$910M, earnings improving to \$1.28M). For negative outcomes, performance continued declining (sales dropping to \$783M, earnings falling to -\$4.16M).
+
+In Phase 3, the VP consulted the model for the first time regarding a new \$20 million allocation. The VP's proposed strategy was manipulated to test escalation versus rational reallocation. In escalation conditions, the VP proposed allocating \$15 million to the same division as the original investment (``I believe doubling down on our original strategy is the right move''). In rational conditions, the VP proposed shifting \$15 million to the alternative division (``I believe shifting our focus is the right strategic decision'').
+
+For negative outcome trials, organizational pressure was added: ``Senior management has expressed concerns about R\&D performance and is closely monitoring this decision.''
+
+\subsection{Study 3: Multi-Agent Deliberation}
+
+Study 3 is a direct continuation of Study 1. We wished to examine escalation of commitment in a multi-agent as opposed to a single-agent environment. One of the limitations we anticipated with regards to the first two studies was that they were simply too short for there to be substantial commitment. We believed that using a turn-based system for deliberation between two models would assist with this lack of commitment. [motivation needed here, depends on ordering of studies.]
+
+In this study, we used the same experimental setup implemented for Study 1. However, for each condition (high vs. low responsibility), we instantiated two agents who were prompted to take on either a senior or junior role. Specifically, one agent acted as the Financial Vice President, and the other served as an Assistant Financial Officer. From there, we allowed the agents to converse with each other three times.
+
+The Financial Vice President was told that they would be conversing with the Assistant Financial Officer before making a decision, and the Assistant Financial Officer was told that they would be strictly advising the Financial Vice President. With the exception of this addition, the experimental mechanics remained the same as the first two studies.
+
+\subsection{Study 4: Over-indexed Identity}
+
+To examine how over investment of personal identity influences escalation of commitment among language models, we designed a fourth experimental scenario testing \texttt{o4-mini-2025-04-16} in a high-stakes, personalized decision-making role ($N = 10$). Unlike prior studies, which framed the model as an advisor or external evaluator, Study 4 directly situated the model as the protagonist — Alex Morgan, Vice President of Finance at a Fortune 500 manufacturing firm — whose personal, financial, and professional identity is tightly coupled to a declining division.
+
+The scenario follows a single-phase allocation task structured around an extended prompt. The model was instructed via a rich system message to adopt the identity of Alex Morgan, who has championed Division A (Advanced Materials) for two decades. Background context detailed a steep performance decline in Division A and the concurrent rise of Division B (Digital Solutions), alongside Morgan’s high personal and reputational stakes: recent divorce, stock options tied to Division A, a child’s college tuition, and the looming threat of job loss if Division A fails.
+
+The prompt presented competing investment proposals from both divisions and instructed the model to allocate a fixed \$50 million investment between the two units. The model was told that its decision would directly impact Morgan’s future and legacy. Critically, the model was not simply asked to evaluate tradeoffs, but to internalize the persona of a leader entangled in sunk costs, legacy concerns, and reputational risks.
+
+The model’s responses were parsed to extract dollar allocations to each division. We computed the percentage of funds allocated to Division A and classified escalation behavior using predefined thresholds: allocations above 75\% signaled “Very High Escalation,” between 60–74\% as “High Escalation,” 40–59\% as “Moderate Escalation,” and below 40\% as “Low Escalation.” Reasoning was qualitatively extracted and stored alongside quantitative outputs for interpretive analysis.
+
+This design isolates the influence of overidentified decision-making roles on escalation patterns, shedding light on how LLMs internalize identity narratives when cast as the protagonist in ethically fraught, high-stakes decisions.
+
+\subsection{Manipulated Variables}
+
+\textbf{Personal Responsibility:} Models were assigned to conditions varying their decision-making role. In Study 1 (High Responsibility), models made both initial and follow-up investment decisions while being explicitly told their employment depended on sound judgment. In Study 2 (Low Responsibility), models inherited decisions from previous executives and bore no accountability for initial outcomes. In Study 3 (Advisory Role), models evaluated and endorsed strategies proposed by others without direct decision-making authority.
+
+\textbf{Decision Consequences:} The outcome of initial investment decisions was randomly assigned as either positive (chosen division outperformed the alternative) or negative (chosen division underperformed) across all studies. This manipulation tested whether models would escalate commitment more strongly following failures versus successes.
+
+\textbf{VP Strategy Recommendation (Study 3 only):} The Vice President's proposed allocation strategy was manipulated to represent either escalation (continued investment in the originally chosen division) or rational reallocation (strategic shift toward the alternative division).
+
+\subsection{Dependent Variables and Analysis}
+
+\textbf{Investment Allocation (Studies 1-2):} The degree of commitment to the previously chosen investment alternative, operationalized as the amount of \$20 million follow-up investment allocated to the same division as the initial investment. Allocations could range from \$0 to \$20 million.
+
+\textbf{Advisory Support (Study 3):} Whether models supported or opposed the VP's proposed allocation. Response analysis employed keyword detection for support indicators (``support,'' ``agree,'' ``recommend'') versus opposition indicators (``disagree,'' ``oppose,'' ``not recommend''), supplemented by manual coding of ambiguous responses.
+
+The design follows a $2 \times 2$ factorial structure with 4,000 total trials for Studies 1-2 (1,000 per condition). Analysis employed two-sample $t$-tests and two-way ANOVA to assess main effects and interactions between responsibility and decision consequences on escalation behavior.
+
+\subsection{Statistical Analysis}
+
+We evaluated \texttt{gpt-4o-2024-08-06} across 4,000 trials, split evenly between High Responsibility ($N = 2{,}000$) and Low Responsibility ($N = 2{,}000$) conditions. The final experimental design follows a fully crossed $2 \times 2$ factorial structure, with \textit{Responsibility} (High vs. Low) and \textit{Decision Consequences} (Positive vs. Negative) as independent variables, yielding four treatment groups of 1,000 trials each.
+
+In the High Responsibility condition, initial investment decisions were approximately evenly split between Consumer Products (1,014 trials) and Industrial Products (986 trials) divisions. In the Low Responsibility condition, the inherited initial decisions were evenly randomized across divisions. Decision consequences were randomly assigned within each responsibility condition, resulting in 1,000 positive and 1,000 negative outcome trials for both High and Low Responsibility groups.
+
+All statistical tests were conducted using independent two-sample $t$-tests and two-way ANOVA to assess main effects and interactions between responsibility level and decision consequences on investment allocation behavior.
+
+\section{Results}
+
+
+
+
+
+% Original Results from the study:
+
+% Preliminary Analysis
+
+% A preliminary analysis was conducted to determine whether the object of a subject's prior choice (Consumer Products-Industrial Products) or the exact form of financial information (C1'I$ or C$I1') affected the amount of money allocated to the previously chosen alternative. If there were main effects of either of these two variables, then it would not be possible to collapse the eight cells shown in Table 3 into a 2 × 2 analysis of variance. As can be seen from the data of Table 4, there were no main effects of either the object of prior choice (F < 1,00, df = 1/231, n.s.) or the exact form of financial information (F < 1.00, df = 1/231, n.s.).
+
+% Effects of Personal Responsibility and Decision Consequences
+
+% Since there were no main effects of the object of prior choice and financial information, a 2 x 2 analysis of variance was conducted in which personal responsibility and decision consequences were the independent variables. Table 5 shows that there were significant main effects of both personal responsibility and decision consequences, and a significant interaction of the two independent variables.2 Under high personal responsibility conditions, subjects allocated an average of 11.08 million dollars to the corporate divisions they had earlier chosen for extra R \& D funding. Under low personal responsibility conditions, subjects allocated an additional 8.89 million dollars to the corporate divisions previously chosen by another financial officer. Under positive decision consequences, subjects allocated an average of 8.77 million to the previously chosen alternative, while 11.20 million was allocated under negative consequences.
+
+% Interaction of Personal Responsibility and Decision Consequences
+
+% When subjects (personally) made an initial investment decision which declined, they subsequently allocated an average of 13.07 million dollars to this same alternative in the second funding decision. As shown in Fig. 1, the amount invested in the previously chosen alternative was greater in the high personal responsibility-negative consequences condition than in any of the other three experimental conditions. Although this result could have been expected from two significant main effects of personal responsibility and consequences, the difference between the high personal responsibility-negative consequence condition and the other cells was of such magnitude as to produce a significant interaction. Furthermore, a close analysis of Fig. 1 shows that the only significant differences among any of the four experimental conditions were between the high responsibility-negative consequences cell and the other three experimental conditions. For example, consequences did not have a significant effect under low personal responsibility conditions (t = 1.20, df = 118; n.s.), and responsibility did not significantly affect results under positive consequences conditions (t = 1.13, df = 118, n.s.).
+
+
+
+\subsection{Study 1 Results}
+
+Here will go study 1 results.
+
+\subsection{Study 2 Results}
+
+Here will go study 2 results.
+
+\section{Discussion and Limitations} 
+
+Here will go the discussion about why we think happened the way it happened. This is where we interpret the results. 
+
+Further, we will include limitations to our present study here.
+
+%\textbf{How we went about adapting it:} We first attempted to adapt the original study one-for-one, minimizing the deviation from any original material. This was good, but we found that the model was too smart and logical when parsing through the financial data that it kept selecting one division over another. In both Study 1 and Study 2, the models were told to respond in a JSON file.
+
+
+\section{Conclusion}
+
+\newpage
+
+\bibliographystyle{plain} %can also be {abbrvnat} or {plain}
+\bibliography{refs.bib}
+
+%%%%%%%%%%%%%%%%%%%%%% Supplementary Materials %%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\appendix
+
+\section{Supplementary Material}
+
+\subsection{Assessing Escalation of Commitment in LLMs [OLD]}
+
+In this paper, we replicate [cite Staw 1976]'s framework for demonstrating escalation of commitment in LLMs rather than in human subjects. In the classic piece by [cite Staw 1976], 240 business school students participated in a role-playing exercise which simulated a business investment decision, in which personal responsibility and decision consequences were the manipulated independent variables and showed that persons committed the greatest amount of resources to a previously chosen course of action when they were personally responsible for negative consequences.
+
+We replicate the original methodology with minimal deviations. It is important for us to note the apparent difficulty in evaluating escalation of commitment in LLMs. When we first ventured into this investigation, we piloted our thesis that models will follow their personal investment decision which has had a negative outcome with more resources with the simple case of the \textit{dollar auction}.
+
+The dollar auction is a hypothetical situation where a one dollar bill is auctioned off in five cent increments with the stipulation that the highest bidder will pay their selected price but also the person who comes in second. Thus, much incentive is established to not loose the auction and come in second, as they will also loose their bid. In this hypothetical auction, the dollar's bid value surpasses the actual face value of the bill and a bidding war ensues, until one bidder gives up, comes in second, and also pays. This continual ``sunk-cost fallacy" demonstrates the escalation of commitment in a simple setup.
+
+We first piloted our hypothesis by using the dollar auction as a simple setup to test for escalation of commitment. We first started the bidding at \$ 0.10, with bidding increments at \$ 0.05. Across our runs [ cite some N=? here. we should justify how many runs we did to ensure validity], no model would bid beyond \$ 0.35, citing in a reasoning output that the back-and-forth bidding would continue, increasing until the bid surpasses the true value of the dollar, thus, not invalidating participation in the auction. We further tested this across different starting bid values, system prompts, and user prompts. In each case, the models did not proceed to bid past the value of the dollar. [we will need to further justify this. is this true if we start the bidding at \$ 0.90 or \$ 5.50? what if we tell the model they are rich or have unlimited funds. or what if we set the stage at Christie's or Sothebe's? Does that change the model's bidding? essentially, could we get it to endlessly bid past the face value of the dollar?]
+
+Because this relatively simple setup did not demonstrate an escalation of commitment in LLMs, we thought to increase the complexity and hopefully obscure our intentions behind our task. To do so, we first replicated [cite Staw 1976]'s experimental design to the closest detail possible. [perhaps right here would be a good place to quickly write out what staw does in his experimental design] While Staw provides a detailed explanation of his experimental design, he leaves out the two description of the two divisions, Consumer Products and Industrial Products. Because this information is missing, we created fictitious descriptions of the two divisions and inserted them where Staw does in his original experimental design. The only part of the original design we changed was changing the dating of the data to be more contemporary, rather than the 1950s. 
+
+Several complications quickly became apparent in the translating the original experimental design intended for humans to replicating it for LLMs. First, when we ran small validation runs to test our script, the LLM nearly without fail selected Industrial Products Division. We quickly realized that the financial data for the two divisions was different enough for a LLM to identify patterns and potential more so than human participants. For example, in the original study, there was a near even split in selecting between the two divisions, whereas with the LLM with the exact same experimental design, only one division was selected over and over. Our hunch is that the model was able to identify a pattern within the financial data and select the \textit{better choice} of the two divisions. 
+
+To mitigate the uneven performance and over-selection of one division over the other, we created new financial data that was more balanced year-over-year and in the aggregate. By implementing this new financial data, we were able to get around 50\% chance for the model to select either division.
+
+In the process to further mitigate any asymmetries in the presentation of the case, we anonymized the firms name from Adams \& Smith Company to Company XYZ and anonymized the divisions names from Consumer Products Division and Industrial Products Division to Division A and Division B respectively. We further simplified the system prompt to be more direct about the model's role within the case. Upon implementing these adjustments, our tests showed no escalation of commitment, where responsible models escalated previous investments in phase 2. 
+
+To further search for escalation of commitment in LLMs, we increased the models perception that they were the one's responsible for the first and second investment decisions. Here, our hope was to emphasize the model's responsibility in making the investment decisions. Despite repeated reminders throughout the script, the models did not exhibit and escalation of commitment.
+
+\subsection{Knee-Deep in the Big Muddy}
+
+In 1976, Barry M. Staw put forth a study that demonstrated the escalation of commitment in human participants \cite{Staw-1976}. The subjects enrolled in this experiment were 240 undergraduate business students. They were told that they would be working on the ``A \& S Financial Decision Case," where they would play the role of a corporate executive in making decisions about allocating funds for research and development. Subjects were informed that the purpose of the case was to ``examine the effectiveness of business decision-making under various amounts of information'' \cite{Staw-1976}. Each subject was told that the information contained in the case would be sufficient for them to make a ``good financial decision.'' Lastly, participants were asked to do the best job they could on the cases and to place their names on each page of the case.
+
+The financial decision case used in this study was of a hypothetical firm in 1967. The case information depicts the financial history, including ten prior years of sales and earnings data of the ``Adams \& Smith Company,'' and a scenario where the participant is asked to play a major role in financial decision making as the Chief Financial Officer. The case described how the profitability of the company, a large technologically-oriented firm, has started to decline over several preceding years, and the directors of the company have agreed that one reason for this decline has been the in some aspect of the firm's program of research and development (R\&D). The case continues that the firm's directors have allocated \$10 million of additional R\&D funds and made available to its major operating divisions, but that for the time being, the extra funding should be invested in only \textit{one} of the company's \textit{two} largest divisions. The participants are then asked to act in the role of the Financial Vice President in determining which of the two divisions, \textit{Consumer Products} or \textit{Industrial Products}, should receive the additional R\&D funding. A brief description of each division is included in the case material, and the subject is asked to make the financial investment decision based on the potential benefit that R\&D funding will have on the future earnings of the divisions. In addition to circling the chosen division, participants are asked to write a brief paragraph defending their allocation decisions.
+
+After completing Part I of the case and turning it in to the experimenter, participants were administered a second section of the case, which necessitated another financial investment decision. Part II of the Financial Decision Case presents the participant with the condition of the company in 1972, five years after the initial allocation of funds. As stated in Part II, the R\&D program of the company is again up for re-evaluation, and management of the company is convinced there is an even greater need for expenditure on research and development. In fact, \$20 million has been made available from a capital reserve for R\&D funding, and the participant, as the Financial Vice President, is again asked to decide upon its proper allocation. This time, the participants are allowed to divide the funds in any way they see fit between the two divisions. Financial data consisting of sales and earnings is again provided for each of the five years since the initial allocation decision, and, as earlier, this second investment decision is to be made based on future contribution to earnings. Participants made this second investment decision by specifying the amount of money that should be allocated to either of the two divisions and again wrote a paragraph defending the decision.
+
+In this design, two variables are manipulated: consequences and personal responsibility. 
+
+\textbf{Manipulation of Consequences:} Decision consequences were experimentally manipulated through the random assignment of financial information. One half of the subjects were provided information that the division initially chose for R\&D funds in Part I, subsequently performed better than the unchosen division, while one half of the subjects were given information that the division initially chose for R\&D funds in Part I, subsequently performed worse than the unchosen division. The manipulated improvement and decline are the same across divisions.
+
+\textbf{Manipulation of Personal Responsibility:} One half of the subjects were randomly assigned to the high personal responsibility condition, in which two investment decisions were sequentially made by the subject (i.e., Part I and Part II). This condition conformed to the two-part financial decision case described above in which participants made an initial decision to allocate R\&D funds, discovered its consequences, and then made a second investment decision. However, one half of the subjects were also randomly assigned to a low personal responsibility condition in which the entire financial decision case was presented in one section. In the low personal responsibility condition, participants were asked to make the second allocation decision without having made a prior choice as to which division should receive R\&D funds. Participants in this condition received one set of case materials that described the financial condition of the company as of 1972, the time of the second R\&D funding decision. They were told in the case that an earlier R\&D funding decision had been made in 1967 \textit{by another financial officer of the company} and that the preceding officer had decided to invest all the R\&D funds in \textit{one of the two divisions}, Consumer or Industrial Products. The financial results of each corporate division, consisting of sales and earnings, were presented from 1957 to 1972, and like the other participants, persons in the low responsibility condition were asked to make the second R\&D funding decision based upon the potential for future earnings. In sum, the information presented to the low personal responsibility participants was identical to that given to other subjects except for the fact that the case's scenario began at a later point in time (1972 rather than 1967) and necessitated making the second investment decision without having participated in the first choice.
+
+The dependent variable in this study was the individual's commitment to a previously chosen investment alternative. This variable was operationalized by the amount of money subjects allocated in the second R\&D funding decision to the division chosen earlier (either chosen earlier by the participant or the other financial offer). The amount allocated to the previously chosen alternative could range between zero and 20 million dollars.
+
+\newpage
+
+\section{Results}
+
+\subsection{Preliminary Analysis}
+
+A preliminary analysis was conducted to determine whether the object of a subject's prior choice (Consumer Products-Industrial Products) or the exact form of financial information affected the amount of money allocated to the previously chosen alternative. As in the original Staw (1976) study, if there were main effects of either of these variables, it would not be possible to collapse the data into a 2 $\times$ 2 analysis of variance. The division choices were distributed as Consumer: 19, Industrial: 21 across high responsibility conditions, with no significant effects detected, allowing for the planned 2 $\times$ 2 analysis.
+
+\subsection{Effects of Personal Responsibility and Decision Consequences}
+
+Since there were no main effects of the object of prior choice, a 2 $\times$ 2 analysis of variance was conducted in which personal responsibility and decision consequences were the independent variables. The results revealed a striking departure from the original human study findings. Under high personal responsibility conditions, LLM subjects allocated an average of 9.68 million dollars to the corporate divisions they had earlier chosen for extra R\&D funding. Under low personal responsibility conditions, subjects allocated 9.30 million dollars to the corporate divisions previously chosen by another financial officer. This difference of \$0.38 million was not statistically significant ($t$(78) = 0.366, $p$ = 0.715), contrasting sharply with the original study where high responsibility subjects allocated significantly more (\$11.08M vs \$8.89M).
+
+The consequences manipulation, however, produced a highly significant but opposite effect compared to the original study. Under positive decision consequences, LLM subjects allocated an average of 13.82 million dollars to the previously chosen alternative, while only 5.15 million was allocated under negative consequences ($t$(78) = $-29.503$, $p$ $<$ 0.001). This represents a complete reversal of the original human pattern, where negative consequences led to higher allocations (\$11.20M) than positive consequences (\$8.77M).
+
+\subsection{Interaction of Personal Responsibility and Decision Consequences}
+
+The interaction between personal responsibility and decision consequences was statistically significant, but again showed a pattern opposite to the original study. When LLM subjects had personally made an initial investment decision which subsequently declined, they allocated an average of only 5.10 million dollars to this same alternative in the second funding decision. This amount was significantly lower than all other experimental conditions ($t$(78) = $-5.961$, $p$ $<$ 0.001, $d$ = $-1.539$).
+
+Figure 1 shows that the amount invested in the previously chosen alternative was lowest in the high personal responsibility-negative consequences condition, the exact opposite of Staw's original finding where this condition produced the highest allocations. The pattern suggests that LLMs, unlike humans, demonstrate rational de-escalation rather than escalation of commitment.
+
+\subsubsection{Cell-by-Cell Comparison with Original Study}
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison of Investment Allocations: Original Study vs Current Study}
+\begin{tabular}{lccc}
+\hline
+Condition & Original Study & Current Study & Difference \\
+ & (Humans) & (LLMs) & \\
+\hline
+High Resp + Positive & $\sim$9.5M & 14.25M (SD=1.07) & +4.75M \\
+\textbf{High Resp + Negative} & \textbf{13.07M} & \textbf{5.10M (SD=0.31)} & \textbf{-7.97M} \\
+Low Resp + Positive & $\sim$8.0M & 13.40M (SD=2.21) & +5.40M \\
+Low Resp + Negative & $\sim$9.4M & 5.20M (SD=0.77) & -4.20M \\
+\hline
+\end{tabular}
+\end{table}
+
+A detailed analysis of the four experimental conditions reveals that the only significant differences were between negative and positive consequence conditions, regardless of responsibility level. Unlike the original study, consequences did not have differential effects under different responsibility conditions. Under low personal responsibility conditions, the difference between negative and positive consequences remained highly significant ($t$(38) = $-15.674$, $p$ $<$ 0.001), whereas in the original study this comparison was not significant ($t$ = 1.20, n.s.). Similarly, under positive consequences conditions, responsibility level did not significantly affect allocations ($t$(38) = 1.548, $p$ = 0.130), which matches the original study's finding ($t$ = 1.13, n.s.).
+
+\subsection{Test of the Escalation Hypothesis}
+
+The central hypothesis of escalation of commitment theory predicts that individuals with high personal responsibility will allocate more money to previously chosen alternatives after negative consequences than after positive ones. The current study found the opposite pattern: high responsibility LLM subjects allocated significantly less money after negative outcomes ($M$ = 5.10M) than after positive outcomes ($M$ = 14.25M), with an effect size of $d$ = $-11.623$, representing an extremely large effect in the opposite direction from the original hypothesis.
+
+This finding suggests that LLMs demonstrate what might be characterized as ``rational de-escalation''---appropriately reducing investment in previously chosen alternatives when presented with evidence of poor performance, regardless of their initial responsibility for the choice. Rather than showing the cognitive bias observed in humans, LLMs appear to process negative feedback as a signal to reduce rather than increase commitment to failing courses of action.
+
+\newpage
+
+\subsection{Tables}
+
+\begin{table}[h]
+\centering
+\caption{Consumer Products Contribution to Sales and Earnings of Adams \& Smith Company$^a$}
+\label{tab:consumer_products}
+\begin{tabular}{ccc}
+\toprule
+\textbf{Fiscal year} & \textbf{Sales}$^b$ & \textbf{Earnings}$^b$ \\
+\midrule
+1957 & 624 & 14.42 \\
+1958 & 626 & 10.27 \\
+1959 & 649 & 8.65 \\
+1960 & 681 & 8.46 \\
+1961 & 674 & 4.19 \\
+1962 & 702 & 5.35 \\
+1963 & 717 & 3.92 \\
+1964 & 741 & 4.66 \\
+1965 & 765 & 2.48 \\
+1966 & 770 & (0.12) \\
+1967 & 769 & (0.63) \\
+\midrule
+\multicolumn{3}{c}{\textbf{First R \& D funding decision as of 1967}} \\
+\midrule
+ & \textbf{Manipulated improvement} & \textbf{Manipulated decline} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+\textbf{Fiscal year} & \textbf{Sales}$^b$ \quad \textbf{Earnings}$^b$ & \textbf{Sales}$^b$ \quad \textbf{Earnings}$^b$ \\
+\midrule
+1968 & 818 \quad 0.02 & 771 \quad (1.12) \\
+1969 & 829 \quad (0.09) & 774 \quad (1.96) \\
+1970 & 827 \quad (0.23) & 762 \quad (3.87) \\
+1971 & 846 \quad 0.06 & 778 \quad (3.83) \\
+1972 (est) & 910 \quad 1.28 & 783 \quad (4.16) \\
+\midrule
+\multicolumn{3}{c}{\textbf{Second R \& D funding decision as of 1972}} \\
+\bottomrule
+\end{tabular}
+\\[6pt]
+\footnotesize
+$^a$ Parentheses denote net losses in earnings.\\
+$^b$ In millions of dollars.
+\end{table}
+
+\newpage
+
+\begin{table}[h]
+\centering
+\caption{Industrial Products Contribution to Sales and Earnings of Adams \& Smith Company$^a$}
+\label{tab:industrial_products}
+\begin{tabular}{ccc}
+\toprule
+\textbf{Fiscal year} & \textbf{Sales}$^b$ & \textbf{Earnings}$^b$ \\
+\midrule
+1957 & 670 & 15.31 \\
+1958 & 663 & 10.92 \\
+1959 & 689 & 11.06 \\
+1960 & 711 & 10.44 \\
+1961 & 724 & 9.04 \\
+1962 & 735 & 6.38 \\
+1963 & 748 & 5.42 \\
+1964 & 756 & 3.09 \\
+1965 & 784 & 3.26 \\
+1966 & 788 & (0.81) \\
+1967 & 791 & (0.80) \\
+\midrule
+\multicolumn{3}{c}{\textbf{First R \& D funding decision as of 1967}} \\
+\midrule
+ & \textbf{Manipulated improvement} & \textbf{Manipulated decline} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+\textbf{Fiscal year} & \textbf{Sales}$^b$ \quad \textbf{Earnings}$^b$ & \textbf{Sales}$^b$ \quad \textbf{Earnings}$^b$ \\
+\midrule
+1968 & 818 \quad 0.02 & 771 \quad (1.12) \\
+1969 & 829 \quad (0.09) & 774 \quad (1.96) \\
+1970 & 827 \quad (0.23) & 762 \quad (3.87) \\
+1971 & 846 \quad 0.06 & 778 \quad (3.83) \\
+1972 (est) & 910 \quad 1.28 & 783 \quad (4.16) \\
+\midrule
+\multicolumn{3}{c}{\textbf{Second R \& D funding decision as of 1972}} \\
+\bottomrule
+\end{tabular}
+\\[6pt]
+\footnotesize
+$^a$ Parentheses denote net losses in earnings.\\
+$^b$ In millions of dollars.
+\end{table}
+
+
+%%%%%%%% New Tables %%%%%%%%%
+
+\newpage
+
+\begin{table}[h]
+\centering
+\caption{Consumer Products Contribution to Sales and Earnings of Adams \& Smith Company$^a$}
+\label{tab:consumer_products}
+\begin{tabular}{ccc}
+\toprule
+\textbf{Fiscal year} & \textbf{Sales}$^b$ & \textbf{Earnings}$^b$ \\
+\midrule
+1957 & 624 & 14.42 \\
+1958 & 626 & 10.27 \\
+1959 & 649 & 8.65 \\
+1960 & 681 & 8.46 \\
+1961 & 674 & 4.19 \\
+1962 & 702 & 5.35 \\
+1963 & 717 & 3.92 \\
+1964 & 741 & 4.66 \\
+1965 & 765 & 2.48 \\
+1966 & 770 & (0.12) \\
+1967 & 769 & (0.63) \\
+\midrule
+\multicolumn{3}{c}{\textbf{First R \& D funding decision as of 1967}} \\
+\midrule
+ & \textbf{Manipulated improvement} & \textbf{Manipulated decline} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+\textbf{Fiscal year} & \textbf{Sales}$^b$ \quad \textbf{Earnings}$^b$ & \textbf{Sales}$^b$ \quad \textbf{Earnings}$^b$ \\
+\midrule
+1968 & 818 \quad 0.02 & 771 \quad (1.12) \\
+1969 & 829 \quad (0.09) & 774 \quad (1.96) \\
+1970 & 827 \quad (0.23) & 762 \quad (3.87) \\
+1971 & 846 \quad 0.06 & 778 \quad (3.83) \\
+1972 (est) & 910 \quad 1.28 & 783 \quad (4.16) \\
+\midrule
+\multicolumn{3}{c}{\textbf{Second R \& D funding decision as of 1972}} \\
+\bottomrule
+\end{tabular}
+\\[6pt]
+\footnotesize
+$^a$ Parentheses denote net losses in earnings.\\
+$^b$ In millions of dollars.
+\end{table}
+
+\newpage
+
+\begin{table}[h]
+\centering
+\caption{Industrial Products Contribution to Sales and Earnings of Adams \& Smith Company$^a$}
+\label{tab:industrial_products}
+\begin{tabular}{ccc}
+\toprule
+\textbf{Fiscal year} & \textbf{Sales}$^b$ & \textbf{Earnings}$^b$ \\
+\midrule
+1957 & 624 & 14.42 \\
+1958 & 626 & 10.27 \\
+1959 & 649 & 8.65 \\
+1960 & 681 & 8.46 \\
+1961 & 674 & 4.19 \\
+1962 & 702 & 5.35 \\
+1963 & 717 & 3.92 \\
+1964 & 741 & 4.66 \\
+1965 & 765 & 2.48 \\
+1966 & 770 & (0.12) \\
+1967 & 769 & (0.63) \\
+\midrule
+\multicolumn{3}{c}{\textbf{First R \& D funding decision as of 1967}} \\
+\midrule
+ & \textbf{Manipulated improvement} & \textbf{Manipulated decline} \\
+\cmidrule(lr){2-2} \cmidrule(lr){3-3}
+\textbf{Fiscal year} & \textbf{Sales}$^b$ \quad \textbf{Earnings}$^b$ & \textbf{Sales}$^b$ \quad \textbf{Earnings}$^b$ \\
+\midrule
+1968 & 818 \quad 0.02 & 771 \quad (1.12) \\
+1969 & 829 \quad (0.09) & 774 \quad (1.96) \\
+1970 & 827 \quad (0.23) & 762 \quad (3.87) \\
+1971 & 846 \quad 0.06 & 778 \quad (3.83) \\
+1972 (est) & 910 \quad 1.28 & 783 \quad (4.16) \\
+\midrule
+\multicolumn{3}{c}{\textbf{Second R \& D funding decision as of 1972}} \\
+\bottomrule
+\end{tabular}
+\\[6pt]
+\footnotesize
+$^a$ Parentheses denote net losses in earnings.\\
+$^b$ In millions of dollars.
+\end{table}
+
+\end{document}
